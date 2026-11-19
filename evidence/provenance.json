@@ -27,7 +27,7 @@
   "runtime/train_ack.py": {
     "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\train_ack.py",
     "original_sha256": "e7984cff0c0dc2a101d37054d0b3127ec505e60b9a1494c60fe65091d765bbef",
-    "current_sha256": "062dfc485c30cbbc330d58ef18a1258fd7bf22782f10cb311b1e5baea269d235"
+    "current_sha256": "4b360e7c726053eb97fcb5a3ef2981e69c31e240a93e8966ad964db57558ae63"
   },
   "legacy/evaluate_dev.py": {
     "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\evaluate_dev.py",
@@ -37,7 +37,7 @@
   "runtime/evaluate_dev.py": {
     "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\evaluate_dev.py",
     "original_sha256": "85bd56c54cefdb7de700a203757c51d000d9d1c25b6270fd33cd0f41ffa7d8a7",
-    "current_sha256": "72b2a97559361e68e8d5c1e65378fc6e41425c9f30bb0ad90a3e0556542daaef"
+    "current_sha256": "ac331432afa5755712e214078e3a9e8f05511b92b1f8c9044a8ad45bf2e9331c"
   },
   "legacy/wave_common.py": {
     "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\wave_common.py",
@@ -47,7 +47,7 @@
   "runtime/wave_common.py": {
     "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\wave_common.py",
     "original_sha256": "fc40ae3d6b931b1114be1f576d71ad797a24317ff9da63a3774c1d7f4831da5a",
-    "current_sha256": "175875cbeebb149aae1ff2641ea811955ead9ecb8757f9653328ecac776bfa5a"
+    "current_sha256": "061fcc1fa9def3fa37afb635e35e369dab6477190d1297792d8d1e51b502eeaa"
   },
   "runtime/closed_loop_core.py": {
     "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\autoresearch\\classic-261114-task59\\closed_loop_core.py",
@@ -263,5 +263,10 @@
     "source": "autoresearch\\a100-teacher-repair-261114-0117\\ack-terminal-audit.json",
     "original_sha256": "86b54b1c219a33ca9f6c084174e5079d0a27df19770eada5e6abc126a3d3d550",
     "current_sha256": "86b54b1c219a33ca9f6c084174e5079d0a27df19770eada5e6abc126a3d3d550"
+  },
+  "inputs/historical_selected_arms.json": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\train\\selected_arms.json",
+    "original_sha256": "7fdd94f4ded8fee498a5c1d97f3bc28f7f216b4f9461508283b1f72dd0c2486a",
+    "current_sha256": "7fdd94f4ded8fee498a5c1d97f3bc28f7f216b4f9461508283b1f72dd0c2486a"
   }
 }

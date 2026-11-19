@@ -1,0 +1,77 @@
+{
+  "reviewed_runtime_commit": "f5682c96bb426a7ad3e8aed7815f346bfb1c9eb8",
+  "root_independent_cpu_commands": [
+    {
+      "name": "source",
+      "cmd": [
+        "C:\\Users\\asus\\.raft\\agents\\6946fc4f-34e5-42f8-abf5-cd3fd9376a5e\\review-v71-next-heads-20261108\\cpu-env\\Scripts\\python.exe",
+        "experiment.py",
+        "check-repo"
+      ],
+      "exit": 0,
+      "seconds": 0.5645177999977022
+    },
+    {
+      "name": "native-smoke",
+      "cmd": [
+        "C:\\Users\\asus\\.raft\\agents\\6946fc4f-34e5-42f8-abf5-cd3fd9376a5e\\review-v71-next-heads-20261108\\cpu-env\\Scripts\\python.exe",
+        "experiment.py",
+        "cpu-smoke"
+      ],
+      "exit": 0,
+      "seconds": 6.843684099963866
+    },
+    {
+      "name": "contract",
+      "cmd": [
+        "C:\\Users\\asus\\.raft\\agents\\6946fc4f-34e5-42f8-abf5-cd3fd9376a5e\\review-v71-next-heads-20261108\\cpu-env\\Scripts\\python.exe",
+        "C:\\Users\\asus\\.raft\\agents\\6946fc4f-34e5-42f8-abf5-cd3fd9376a5e\\autoresearch\\six-repo-review-20261120\\tests\\teacher_contract.py",
+        "C:\\Users\\asus\\.raft\\agents\\6946fc4f-34e5-42f8-abf5-cd3fd9376a5e\\r69\\spec-repair-teacher-kv"
+      ],
+      "exit": 0,
+      "seconds": 1.9338248000713065
+    },
+    {
+      "name": "recovery",
+      "cmd": [
+        "C:\\Users\\asus\\.raft\\agents\\6946fc4f-34e5-42f8-abf5-cd3fd9376a5e\\review-v71-next-heads-20261108\\cpu-env\\Scripts\\python.exe",
+        "C:\\Users\\asus\\.raft\\agents\\6946fc4f-34e5-42f8-abf5-cd3fd9376a5e\\autoresearch\\six-repo-review-20261120\\tests\\teacher_recovery.py",
+        "C:\\Users\\asus\\.raft\\agents\\6946fc4f-34e5-42f8-abf5-cd3fd9376a5e\\r69\\spec-repair-teacher-kv"
+      ],
+      "exit": 0,
+      "seconds": 3.0629580999957398
+    },
+    {
+      "name": "online",
+      "cmd": [
+        "C:\\Users\\asus\\.raft\\agents\\6946fc4f-34e5-42f8-abf5-cd3fd9376a5e\\review-v71-next-heads-20261108\\cpu-env\\Scripts\\python.exe",
+        "C:\\Users\\asus\\.raft\\agents\\6946fc4f-34e5-42f8-abf5-cd3fd9376a5e\\autoresearch\\six-repo-review-20261120\\tests\\teacher_online.py",
+        "C:\\Users\\asus\\.raft\\agents\\6946fc4f-34e5-42f8-abf5-cd3fd9376a5e\\r69\\spec-repair-teacher-kv"
+      ],
+      "exit": 0,
+      "seconds": 6.588681299937889
+    }
+  ],
+  "runtime_and_bound_input_sha256_unchanged_by_this_commit": true,
+  "provenance_corrected": [
+    {
+      "path": "runtime/train_ack.py",
+      "before": "062dfc485c30cbbc330d58ef18a1258fd7bf22782f10cb311b1e5baea269d235",
+      "after": "4b360e7c726053eb97fcb5a3ef2981e69c31e240a93e8966ad964db57558ae63"
+    },
+    {
+      "path": "runtime/evaluate_dev.py",
+      "before": "72b2a97559361e68e8d5c1e65378fc6e41425c9f30bb0ad90a3e0556542daaef",
+      "after": "ac331432afa5755712e214078e3a9e8f05511b92b1f8c9044a8ad45bf2e9331c"
+    },
+    {
+      "path": "runtime/wave_common.py",
+      "before": "175875cbeebb149aae1ff2641ea811955ead9ecb8757f9653328ecac776bfa5a",
+      "after": "061fcc1fa9def3fa37afb635e35e369dab6477190d1297792d8d1e51b502eeaa"
+    }
+  ],
+  "historical_selection_original_sha256": "7fdd94f4ded8fee498a5c1d97f3bc28f7f216b4f9461508283b1f72dd0c2486a",
+  "GPU_used": false,
+  "server_transfer": false,
+  "scope": "evidence refresh only; preserves reviewer commit and full source bindings; actual historical .pt not loaded"
+}

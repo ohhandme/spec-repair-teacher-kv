@@ -1,6 +1,28 @@
 --- legacy/evaluate_dev.py
 +++ runtime/evaluate_dev.py
-@@ -94,7 +94,7 @@
+@@ -7,10 +7,13 @@
+ 
+ def audit(req,base,f,arm):
+  r=read(base/'receipt.json');assert r['status']=='pass' and r['freeze_sha256']==sha(ROOT/'freeze.json')
++ assert (r['request_id'],r['family_id'],r['arm'])==(req['request_id'],req['family_id'],arm['name'])
+  assert r['checkpoint_sha256']==arm['sha256'] and r['raw_trace_sha256']==req['raw_trace_sha256']
+  assert sha(base/'rounds.jsonl')==r['rounds_sha256'] and r['oracle_receipt_sha256']==sha(ROOT/'oracles'/f"{req['request_id']}.json")
+  rows=lines(base/'rounds.jsonl');prefix=req['prompt_ids'].copy();accepted=0
+  for i,row in enumerate(rows):
++  assert row['candidate_ids'] and row['committed_ids']
++  assert (row['request_id'],row['arm'],row['checkpoint_sha256'])==(req['request_id'],arm['name'],arm['sha256'])
+   assert row['round']==i and row['prefix_before_ids']==prefix and row['prefix_before_sha256']==digest(prefix)
+   a=0
+   for c,t in zip(row['candidate_ids'],row['target_decision_ids']):
+@@ -42,6 +45,7 @@
+   if a['checkpoint']:assert sha(a['checkpoint'])==a['sha256']
+  out=ROOT/('six_dev' if stage=='six' else 'ack_dev');out.mkdir(exist_ok=True)
+  if (out/'completion.json').exists():event('already_complete_no_dispatch',stage=stage);return
++ pathlib.Path(LOCK).parent.mkdir(parents=True,exist_ok=True)
+  lock=open(LOCK,'a+');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+  assert not command(['nvidia-smi','--query-compute-apps=pid,used_memory','--format=csv,noheader']),'occupied; never interrupt'
+  lease=dict(status='held',pid=os.getpid(),unix=time.time(),lock=LOCK,stage=stage,freeze_sha256=sha(ROOT/'freeze.json'),no_added_runtime_limit=True)
+@@ -94,7 +98,7 @@
       o=read(p);assert o['freeze_sha256']==sha(ROOT/'freeze.json') and o['prompt_sha256']==digest(req['prompt_ids']) and o['output_ids']==req['frozen_target_ids'];return o
      started=time.perf_counter();source=req['oracle_source']
      if source=='sealed_RAW_independent_greedy':output=read(req['raw_trace_path'])['oracle_ids']
@@ -9,3 +31,24 @@
      else:
       event('independent_Target',request_id=req['request_id'],stage=stage)
       with torch.inference_mode():output=list(autoregressive_generate(target,req['prompt_ids'],128,151645))
+@@ -115,7 +119,11 @@
+     else:
+      head=heads.get(name)
+      def proposal(prefix,state,position):
+-      if head is None or state is None:return int(draft.model.get_output_embeddings()(draft.teacher_hidden(prefix,[0])).argmax(-1).item())
++      if head is None or state is None:
++       candidate=int(draft.model.get_output_embeddings()(draft.teacher_hidden(prefix,[0])).argmax(-1).item())
++       if force_RAW and candidate!=HFDraftBackend.next(draft,prefix,None,position):
++        raise ValueError('historical draft and native RAW disagree on smoke request '+rid)
++       return candidate
+       return head.next_token(prefix,state,position,draft)
+      def prepare(row,boundary):
+       if a['kind']=='ack':return head.prepare_online(row,boundary,draft)
+@@ -184,6 +192,7 @@
+    ensure_oracle(req);pending=[a for a in arms if (req['request_id'],a['name']) not in records]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=chosen) as pool:list(pool.map(lambda a:work(req,a),pending))
+   assert len(records)==503*len(arms)
++  publish_manifest(out,roster,arms,records)
+   summary={}
+   for a in arms:
+    rr=[v for k,v in records.items() if k[1]==a['name']];acc=sum(r['accepted_draft_tokens'] for r in rr);rounds=sum(r['verification_rounds'] for r in rr)
