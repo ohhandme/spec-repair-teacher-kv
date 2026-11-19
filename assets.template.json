@@ -1,0 +1,14 @@
+{
+  "models_root": "/mnt/spec-assets/models",
+  "models_manifest": "/mnt/spec-assets/models_manifest.json",
+  "train_root": "/mnt/spec-assets/a100-repair-raw5000-20261113-v1",
+  "data_root": "/mnt/spec-assets/a100-ultrachat5000-vanilla-20261111-7858dc6a",
+  "gpu_lock": "/srv/spec-runs/shared-gpu0.lock",
+  "path_map": {
+    "/data": "/mnt/spec-assets"
+  },
+  "common_windows": {
+    "train": "/mnt/spec-assets/teacher-kv/common_train.jsonl",
+    "calibration": "/mnt/spec-assets/teacher-kv/common_calibration.jsonl"
+  }
+}

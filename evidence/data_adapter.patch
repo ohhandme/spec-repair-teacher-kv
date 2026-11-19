@@ -1,0 +1,19 @@
+--- legacy/ack_data.py
++++ runtime/ack_data.py
+@@ -1,6 +1,7 @@
+ """Identical legal row mapping. Labels and loss mask never enter signal adapters."""
+ from functools import lru_cache
+ import json,pathlib
++from wave_common import remap
+ import torch
+ from safetensors import safe_open
+ from cache_adapter import FrozenWindows,attach_embeddings
+@@ -21,7 +22,7 @@
+    self.packed={k:np.load(pathlib.Path(packed_root)/f'{split}_{k}.npy',mmap_mode='r') for k in ['K','V','mask']}
+  @lru_cache(maxsize=48)
+  def features(self,path):
+-  with safe_open(path,framework='pt',device='cpu') as f:
++  with safe_open(remap(path),framework='pt',device='cpu') as f:
+    return {k:f.get_tensor(k) for k in f.keys() if k.endswith(('.K','.V','.valid','.hidden'))}
+  def batch(self,indices):
+   x=super().batch(indices);ks=[];vs=[];ms=[]

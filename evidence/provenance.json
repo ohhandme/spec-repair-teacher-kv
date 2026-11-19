@@ -1,0 +1,267 @@
+{
+  "legacy/ack_head.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\ack_head.py",
+    "original_sha256": "14af7c6205ff49a26155ad43de072b4550312e9ac7a4c9c40d1c7c419a9f155f",
+    "current_sha256": "14af7c6205ff49a26155ad43de072b4550312e9ac7a4c9c40d1c7c419a9f155f"
+  },
+  "runtime/ack_head.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\ack_head.py",
+    "original_sha256": "14af7c6205ff49a26155ad43de072b4550312e9ac7a4c9c40d1c7c419a9f155f",
+    "current_sha256": "14af7c6205ff49a26155ad43de072b4550312e9ac7a4c9c40d1c7c419a9f155f"
+  },
+  "legacy/ack_data.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\ack_data.py",
+    "original_sha256": "8858cea9ecc1f25d3eb61263f845a240a1b7f1c0c39abb9f8b5f7adc994d351b",
+    "current_sha256": "8858cea9ecc1f25d3eb61263f845a240a1b7f1c0c39abb9f8b5f7adc994d351b"
+  },
+  "runtime/ack_data.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\ack_data.py",
+    "original_sha256": "8858cea9ecc1f25d3eb61263f845a240a1b7f1c0c39abb9f8b5f7adc994d351b",
+    "current_sha256": "4c47be22e1193a75baec55f70e0830757d62efb3af42a9af54438fd7a322f561"
+  },
+  "legacy/train_ack.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\train_ack.py",
+    "original_sha256": "e7984cff0c0dc2a101d37054d0b3127ec505e60b9a1494c60fe65091d765bbef",
+    "current_sha256": "e7984cff0c0dc2a101d37054d0b3127ec505e60b9a1494c60fe65091d765bbef"
+  },
+  "runtime/train_ack.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\train_ack.py",
+    "original_sha256": "e7984cff0c0dc2a101d37054d0b3127ec505e60b9a1494c60fe65091d765bbef",
+    "current_sha256": "062dfc485c30cbbc330d58ef18a1258fd7bf22782f10cb311b1e5baea269d235"
+  },
+  "legacy/evaluate_dev.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\evaluate_dev.py",
+    "original_sha256": "85bd56c54cefdb7de700a203757c51d000d9d1c25b6270fd33cd0f41ffa7d8a7",
+    "current_sha256": "85bd56c54cefdb7de700a203757c51d000d9d1c25b6270fd33cd0f41ffa7d8a7"
+  },
+  "runtime/evaluate_dev.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\evaluate_dev.py",
+    "original_sha256": "85bd56c54cefdb7de700a203757c51d000d9d1c25b6270fd33cd0f41ffa7d8a7",
+    "current_sha256": "72b2a97559361e68e8d5c1e65378fc6e41425c9f30bb0ad90a3e0556542daaef"
+  },
+  "legacy/wave_common.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\wave_common.py",
+    "original_sha256": "fc40ae3d6b931b1114be1f576d71ad797a24317ff9da63a3774c1d7f4831da5a",
+    "current_sha256": "fc40ae3d6b931b1114be1f576d71ad797a24317ff9da63a3774c1d7f4831da5a"
+  },
+  "runtime/wave_common.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\source\\wave_common.py",
+    "original_sha256": "fc40ae3d6b931b1114be1f576d71ad797a24317ff9da63a3774c1d7f4831da5a",
+    "current_sha256": "175875cbeebb149aae1ff2641ea811955ead9ecb8757f9653328ecac776bfa5a"
+  },
+  "runtime/closed_loop_core.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\autoresearch\\classic-261114-task59\\closed_loop_core.py",
+    "original_sha256": "a9a9e91e44b9dc36fa49a23004503098e1dd48f4db4b51a69d0f966eb67eb33e",
+    "current_sha256": "a9a9e91e44b9dc36fa49a23004503098e1dd48f4db4b51a69d0f966eb67eb33e"
+  },
+  "runtime/sweep_heads_task59_analyst.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\autoresearch\\classic-261114-task59\\first4-1a34c7c8\\sweep_heads_task59_analyst.py",
+    "original_sha256": "1a34c7c85e2e54bab79d9bfcf7e8183fa1713e5bd1eb2fb61068d9e1fb6a3e2d",
+    "current_sha256": "1a34c7c85e2e54bab79d9bfcf7e8183fa1713e5bd1eb2fb61068d9e1fb6a3e2d"
+  },
+  "runtime/cache_adapter.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\autoresearch\\classic-261114-task59\\first4-1a34c7c8\\cache_adapter.py",
+    "original_sha256": "c8aee03ae44b672bb506038763cc5c0908c8f59d918726901009bf275387a241",
+    "current_sha256": "c8aee03ae44b672bb506038763cc5c0908c8f59d918726901009bf275387a241"
+  },
+  "runtime/same_forward_kv.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\autoresearch\\classic-261114-task59\\kv-37f19abe\\same_forward_kv.py",
+    "original_sha256": "13c95fc2cfd10c1c3338e9fd58b8e9eb34f2cbfb0220bd496c47cc38f0466a2b",
+    "current_sha256": "13c95fc2cfd10c1c3338e9fd58b8e9eb34f2cbfb0220bd496c47cc38f0466a2b"
+  },
+  "runtime/teacher_kv_task59_analyst.py": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\autoresearch\\classic-261114-task59\\kv-37f19abe\\teacher_kv_task59_analyst.py",
+    "original_sha256": "37f19abef538dfd79397b6d0de111c03ec04cd79573866907e4b1c12c0755efa",
+    "current_sha256": "37f19abef538dfd79397b6d0de111c03ec04cd79573866907e4b1c12c0755efa"
+  },
+  "vendor/feedback_codec/__init__.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\__init__.py",
+    "original_sha256": "b50f9d478fb3141111e98b6724613fa40bdda07ba0e5e25852a7744ef3a7c89a",
+    "current_sha256": "b50f9d478fb3141111e98b6724613fa40bdda07ba0e5e25852a7744ef3a7c89a"
+  },
+  "vendor/feedback_codec/cloud_edge.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\cloud_edge.py",
+    "original_sha256": "1190d80a0ba0e298b3a1e000ae1ab122f7ff5c88dfe4adae810a6a2f78888de4",
+    "current_sha256": "1190d80a0ba0e298b3a1e000ae1ab122f7ff5c88dfe4adae810a6a2f78888de4"
+  },
+  "vendor/feedback_codec/codec.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\codec.py",
+    "original_sha256": "75c3c1e7a4d0e81bbc1ecdeeca177ad504745d60afd4584e0932daeb198a06c6",
+    "current_sha256": "75c3c1e7a4d0e81bbc1ecdeeca177ad504745d60afd4584e0932daeb198a06c6"
+  },
+  "vendor/feedback_codec/cost_model.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\cost_model.py",
+    "original_sha256": "37fc5b55e056453d8d66ceb133d64fc387b560fc5e1447e06356d224f1fb5114",
+    "current_sha256": "37fc5b55e056453d8d66ceb133d64fc387b560fc5e1447e06356d224f1fb5114"
+  },
+  "vendor/feedback_codec/decoding.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\decoding.py",
+    "original_sha256": "3a8ad56b186e5e64bf8dc1bb832192d5efc5b557457546bd79e4fb1eb4c906fc",
+    "current_sha256": "3a8ad56b186e5e64bf8dc1bb832192d5efc5b557457546bd79e4fb1eb4c906fc"
+  },
+  "vendor/feedback_codec/evaluation.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\evaluation.py",
+    "original_sha256": "88f7dd4b21ebdaa0d4cb46c430f483d5f49f1f032ba70ace7e1cd04159e444df",
+    "current_sha256": "88f7dd4b21ebdaa0d4cb46c430f483d5f49f1f032ba70ace7e1cd04159e444df"
+  },
+  "vendor/feedback_codec/fixed_probe.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\fixed_probe.py",
+    "original_sha256": "184b513346934a01f8b3fec6f4517525eee0be2e143fa41513c54cf1642343f0",
+    "current_sha256": "184b513346934a01f8b3fec6f4517525eee0be2e143fa41513c54cf1642343f0"
+  },
+  "vendor/feedback_codec/hf_backend.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\hf_backend.py",
+    "original_sha256": "a24f7bc95745df165fa9e1d3ad2a6110afca38f8f68268a6da755a22fdb36632",
+    "current_sha256": "a24f7bc95745df165fa9e1d3ad2a6110afca38f8f68268a6da755a22fdb36632"
+  },
+  "vendor/feedback_codec/losses.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\losses.py",
+    "original_sha256": "2c7243da6f7868c4de5fcc822c43592a6737d4ade48809614c62fb44eaefeda4",
+    "current_sha256": "2c7243da6f7868c4de5fcc822c43592a6737d4ade48809614c62fb44eaefeda4"
+  },
+  "vendor/feedback_codec/packed.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\packed.py",
+    "original_sha256": "c719e263682f4655efc3fcec3a43a8e05986ee60906224e9b1a7c0accfeec427",
+    "current_sha256": "c719e263682f4655efc3fcec3a43a8e05986ee60906224e9b1a7c0accfeec427"
+  },
+  "vendor/feedback_codec/packed_probe.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\packed_probe.py",
+    "original_sha256": "f40afe8aed8a32a0475dc78cdd18666214111c76e53cff79a11214204d827765",
+    "current_sha256": "f40afe8aed8a32a0475dc78cdd18666214111c76e53cff79a11214204d827765"
+  },
+  "vendor/feedback_codec/packed_probe_numeric_v2.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\packed_probe_numeric_v2.py",
+    "original_sha256": "ebb08c113cd120eeb36400385ea2660a502b988fff770ef8492b71479c30cf82",
+    "current_sha256": "ebb08c113cd120eeb36400385ea2660a502b988fff770ef8492b71479c30cf82"
+  },
+  "vendor/feedback_codec/packed_probe_numeric_v3.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\packed_probe_numeric_v3.py",
+    "original_sha256": "3f25ecc6a7e5fa96bcbec3b7442294f205c1c8016ddea14341c8aa27c7e3410c",
+    "current_sha256": "3f25ecc6a7e5fa96bcbec3b7442294f205c1c8016ddea14341c8aa27c7e3410c"
+  },
+  "vendor/feedback_codec/pipeline.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\pipeline.py",
+    "original_sha256": "1247c27bf2ee9f48a26488bb9b1da987aa50d6185fd72b4af92292a5dbd0ed1e",
+    "current_sha256": "1247c27bf2ee9f48a26488bb9b1da987aa50d6185fd72b4af92292a5dbd0ed1e"
+  },
+  "vendor/feedback_codec/training.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\training.py",
+    "original_sha256": "8860fdc5041f15e637b26edb85bf3cd8c61d89bbff35a272ba48bd044682e6cd",
+    "current_sha256": "8860fdc5041f15e637b26edb85bf3cd8c61d89bbff35a272ba48bd044682e6cd"
+  },
+  "vendor/feedback_codec/v10_closed_loop.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v10_closed_loop.py",
+    "original_sha256": "dd8bf2e4adad93028478783edd12a0ae554d7cb8f64fdff891f11f703e3a9749",
+    "current_sha256": "dd8bf2e4adad93028478783edd12a0ae554d7cb8f64fdff891f11f703e3a9749"
+  },
+  "vendor/feedback_codec/v10_collect_one.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v10_collect_one.py",
+    "original_sha256": "8f3a84fa2440819c3a64f81c83e73bd8af15e559faf13f2380cf681c341a9ce4",
+    "current_sha256": "8f3a84fa2440819c3a64f81c83e73bd8af15e559faf13f2380cf681c341a9ce4"
+  },
+  "vendor/feedback_codec/v10_four_arm.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v10_four_arm.py",
+    "original_sha256": "85925af8cc6db232caf00aa2af373b7897111fc20d400f003bd3ee068328c44d",
+    "current_sha256": "85925af8cc6db232caf00aa2af373b7897111fc20d400f003bd3ee068328c44d"
+  },
+  "vendor/feedback_codec/v10_train_smoke_reader.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v10_train_smoke_reader.py",
+    "original_sha256": "7cb67bad1ed0068cd7f7b575d61c67bbc4b5d09a82b76b796db3490efc8614a3",
+    "current_sha256": "7cb67bad1ed0068cd7f7b575d61c67bbc4b5d09a82b76b796db3490efc8614a3"
+  },
+  "vendor/feedback_codec/v10_transformer_bcfh.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v10_transformer_bcfh.py",
+    "original_sha256": "9cf1e539bc93ffe35b292f3cd887b7fd911ecaea4643b3da023b653e0ca95d55",
+    "current_sha256": "9cf1e539bc93ffe35b292f3cd887b7fd911ecaea4643b3da023b653e0ca95d55"
+  },
+  "vendor/feedback_codec/v11_collect_one.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v11_collect_one.py",
+    "original_sha256": "df24ed75bb9bab71b9d728290b5add9bffb2ce2def1b7a5772d8e1a6fcad779b",
+    "current_sha256": "df24ed75bb9bab71b9d728290b5add9bffb2ce2def1b7a5772d8e1a6fcad779b"
+  },
+  "vendor/feedback_codec/v11_full_contract.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v11_full_contract.py",
+    "original_sha256": "0a0c1c50f402e981c7c4790400fb40849d12c9a8a3f8313fa089612cbcc795dd",
+    "current_sha256": "0a0c1c50f402e981c7c4790400fb40849d12c9a8a3f8313fa089612cbcc795dd"
+  },
+  "vendor/feedback_codec/v11_stats.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v11_stats.py",
+    "original_sha256": "90e13d74999624028ea102dcdf06d127bb50cef1315f0c9a9837881894d989f2",
+    "current_sha256": "90e13d74999624028ea102dcdf06d127bb50cef1315f0c9a9837881894d989f2"
+  },
+  "vendor/feedback_codec/v11_teacher_diagnostic.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v11_teacher_diagnostic.py",
+    "original_sha256": "d51766236ed598f52a0a777dbed0cd600e5458c6fe1021bbcbf2a2056a8efab4",
+    "current_sha256": "d51766236ed598f52a0a777dbed0cd600e5458c6fe1021bbcbf2a2056a8efab4"
+  },
+  "vendor/feedback_codec/v12_acceptance.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v12_acceptance.py",
+    "original_sha256": "3191c8d30de745f45f8301ec7661565a286cc44607096768f483bbdca1c3863a",
+    "current_sha256": "3191c8d30de745f45f8301ec7661565a286cc44607096768f483bbdca1c3863a"
+  },
+  "vendor/feedback_codec/v12_boundary_reader.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v12_boundary_reader.py",
+    "original_sha256": "765e729575f4b3e0eebc76a4fd3a5245608789f6e0b866b9f580bc0b825fd8c8",
+    "current_sha256": "765e729575f4b3e0eebc76a4fd3a5245608789f6e0b866b9f580bc0b825fd8c8"
+  },
+  "vendor/feedback_codec/v12_collect_one.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v12_collect_one.py",
+    "original_sha256": "b2b3fcd5261a872e21bbdc2f34ae3e8a2e65ec20d142afd020b57f393c73fad4",
+    "current_sha256": "b2b3fcd5261a872e21bbdc2f34ae3e8a2e65ec20d142afd020b57f393c73fad4"
+  },
+  "vendor/feedback_codec/v12_draft_observer.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v12_draft_observer.py",
+    "original_sha256": "17943f91dc3b7ca0d6d70fb20fac69921b380a07dd230e4e6ce5af8b65005596",
+    "current_sha256": "17943f91dc3b7ca0d6d70fb20fac69921b380a07dd230e4e6ce5af8b65005596"
+  },
+  "vendor/feedback_codec/v12_oracle_observer.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v12_oracle_observer.py",
+    "original_sha256": "72193b77380432be09ce083c88b22b389ae8ee55681cc511bdd651f15e853133",
+    "current_sha256": "72193b77380432be09ce083c88b22b389ae8ee55681cc511bdd651f15e853133"
+  },
+  "vendor/feedback_codec/v12_round_assembly.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v12_round_assembly.py",
+    "original_sha256": "ec326507a402e44ba29adfe702dfaedd380e2047c8582150b98566e700e8b92b",
+    "current_sha256": "ec326507a402e44ba29adfe702dfaedd380e2047c8582150b98566e700e8b92b"
+  },
+  "vendor/feedback_codec/v12_storage.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v12_storage.py",
+    "original_sha256": "e58ae9b85324ee5871f9e02b46d852b1f4ea25669d6d9961e37504e9ebfe2c62",
+    "current_sha256": "e58ae9b85324ee5871f9e02b46d852b1f4ea25669d6d9961e37504e9ebfe2c62"
+  },
+  "vendor/feedback_codec/v2_p1_packed.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v2_p1_packed.py",
+    "original_sha256": "921d18bdd536fcdf7c437864da867c80c2fc8f2fff62210effbc54a38f5a8751",
+    "current_sha256": "921d18bdd536fcdf7c437864da867c80c2fc8f2fff62210effbc54a38f5a8751"
+  },
+  "vendor/feedback_codec/v2_upper_bound.py": {
+    "source": "autoresearch\\a100-experiment-repos\\spec-repair-mlp-fkl\\native\\Spec_v2-main\\feedback_codec\\v2_upper_bound.py",
+    "original_sha256": "d7c7319ccd99e42c2dd1104eccc37f567d6ff79e4c589a4111c9e1843e6a39b9",
+    "current_sha256": "d7c7319ccd99e42c2dd1104eccc37f567d6ff79e4c589a4111c9e1843e6a39b9"
+  },
+  "inputs/development503.json": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\binding\\roster503.json",
+    "original_sha256": "576c46525d252bfeeb108206f0197b27d8aa27e923205cbec738c0e2f5b6326c",
+    "current_sha256": "576c46525d252bfeeb108206f0197b27d8aa27e923205cbec738c0e2f5b6326c"
+  },
+  "inputs/models_manifest.json": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\binding\\models_manifest.json",
+    "original_sha256": "3aa01f3c1f4b9bf488fbe696a374775e4ebf371be1a1836f5a1bda02256c3ee4",
+    "current_sha256": "3aa01f3c1f4b9bf488fbe696a374775e4ebf371be1a1836f5a1bda02256c3ee4"
+  },
+  "inputs/historical_registration.json": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\binding\\ACK_registration.json",
+    "original_sha256": "31184bac91d4c074080c5501a1197c8696b54b8b3651e0c34c4421832c361411",
+    "current_sha256": "31184bac91d4c074080c5501a1197c8696b54b8b3651e0c34c4421832c361411"
+  },
+  "inputs/historical_freeze.json": {
+    "source": "C:\\Users\\asus\\Documents\\Codex\\2026-11-10\\w-x\\outputs\\Task59-ACK-complete-minimal-20261115\\evidence\\native\\binding\\freeze.json",
+    "original_sha256": "da8dfba8f96252621669c8883470ee3d4b108204dec5b1937e9d8be986f4df95",
+    "current_sha256": "da8dfba8f96252621669c8883470ee3d4b108204dec5b1937e9d8be986f4df95"
+  },
+  "evidence/historical_503_audit.json": {
+    "source": "autoresearch\\a100-teacher-repair-261114-0117\\ack-terminal-audit.json",
+    "original_sha256": "86b54b1c219a33ca9f6c084174e5079d0a27df19770eada5e6abc126a3d3d550",
+    "current_sha256": "86b54b1c219a33ca9f6c084174e5079d0a27df19770eada5e6abc126a3d3d550"
+  }
+}

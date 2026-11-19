@@ -1,0 +1,24 @@
+{
+  "status": "pass",
+  "GPU_used": false,
+  "checks": [
+    "immutable configured loss rejects overwrite",
+    "all three arms have identical initialization and active matched capacity",
+    "real safetensors common-row mapping and relocated feature paths",
+    "zero residual RAW equality, future-label isolation, mask and legal H/KV sensitivity, finite gradients",
+    "padding excluded and front weights normalized within each window",
+    "actual model+AdamW+private Gumbel RNG checkpoint restores identical next update",
+    "future/unprocessed-answer KV boundary rejected",
+    "canonical SD loop: seven actual accept/reject/EOS/bonus/truncation cases",
+    "actual tiny Qwen3 post-RoPE K/V matches independent cache; Target token/hidden unchanged"
+  ],
+  "trainable_parameters_each": 2283296,
+  "projection_parameters": 98304,
+  "source": "real frozen historical components; synthetic small CPU fixtures",
+  "scope": "not a full production train/eval, 8B Target run, or GPU/latency result",
+  "execution_record": "successful tool result e99b0e, exit0; recorded from returned stdout",
+  "torch": "2.9.1+cpu",
+  "transformers": "4.57.1",
+  "source_manifest_sha256": "dd30d71257dc9b2cba387c1b34ee4b494d634a62805c3a8ee38bba6ed4998ec4",
+  "command": "python experiment.py cpu-smoke"
+}

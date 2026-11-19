@@ -1,0 +1,8 @@
+{
+  "first_attempt": "CPU transformers4.57.3 Qwen3 source hash failed original SameForwardKV guard; no production bypass",
+  "expected_sha256": "4b95c371fd26d40c69083dab36ac1eafd8cf82b415a0bb827275097c5ad2305b",
+  "installed_4_57_3_sha256": "d96eeea4c000abaa70a7c0277437d0843b5b2d005ab233e0ffcaf860a357f1aa",
+  "resolution": "Isolated transformers4.57.1 from PyPI; production source guard preserved, full CPU fixture passes",
+  "primary_reference": "https://raw.githubusercontent.com/huggingface/transformers/v4.57.1/src/transformers/models/qwen3/modeling_qwen3.py",
+  "server_or_GPU_started": false
+}

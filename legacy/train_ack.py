@@ -1,0 +1,87 @@
+"""Same legal rows/order/budget for all three active capacity-matched heads."""
+import fcntl,gc,math,os,sys,time,traceback
+from wave_common import *
+sys.path.insert(0,str(FIRST));sys.path.insert(0,str(KV));sys.path.insert(0,read(ROOT/'freeze.json')['source_root'])
+
+def main():
+ out=ROOT/'ack_training';out.mkdir(exist_ok=True)
+ if (out/'completion.json').exists():return
+ assert read(ROOT/'six_dev/completion.json')['status']=='complete'
+ assert read(ROOT/'six_dev/gpu_lease.json')['status']=='released'
+ assert read(ROOT/'ACK_CPU_receipt.json')['status']=='pass'
+ cfg=read(ROOT/'ACK_registration.json');packed=read(ROOT/'ack_packed/completion.json');assert packed['status']=='complete'
+ for e in packed['files'].values():assert sha(e['path'])==e['sha256']
+ lock=open(LOCK,'a+');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+ assert not command(['nvidia-smi','--query-compute-apps=pid,used_memory','--format=csv,noheader'])
+ lease=dict(status='held',pid=os.getpid(),unix=time.time(),lock=LOCK,no_added_runtime_cap=True);write(out/'gpu_lease.json',lease)
+ try:
+  import numpy as np
+  import torch
+  from feedback_codec.hf_backend import _FrozenHFBackend
+  from feedback_codec.codec import CodecConfig
+  from sweep_heads_task59_analyst import window_ce
+  from ack_head import MatchedACKHead
+  from ack_data import MatchedWindows,select_view
+  from cache_adapter import attach_embeddings
+  torch.set_num_threads(4);torch.manual_seed(42);freeze=read(ROOT/'freeze.json')
+  draft=_FrozenHFBackend(str(pathlib.Path(freeze['models_root'])/'Qwen3-0.6B'),None,device='cuda:0',dtype=torch.bfloat16)
+  rec=lines(TRAIN/'index.jsonl');datasets={s:MatchedWindows(rec,TRAIN/'cache',s,cfg['common_windows'][s]['path'],ROOT/'ack_packed') for s in ['train','calibration']}
+  groups=[]
+  for name in cfg['arms']:
+   torch.manual_seed(42);h=MatchedACKHead(CodecConfig(4096,1024,draft.vocab_size),draft.model.get_output_embeddings(),arm=name).to('cuda:0')
+   groups.append(dict(name=name,head=h,opt=torch.optim.AdamW([p for p in h.parameters() if p.requires_grad],**cfg['optimizer']),rng=torch.Generator(device='cuda').manual_seed(42),epoch=1,position=0,updates=0,history=[],best=float('inf'),best_epoch=None,train_seconds=0.))
+  def batch(ds,ids):return attach_embeddings(ds.batch(ids),draft.model.get_input_embeddings(),'cuda:0')
+  x=batch(datasets['train'],list(range(32)));smoke=[]
+  for g in groups:
+   h=g['head'];initial=h.trainable_state_dict()
+   with torch.inference_mode():assert torch.equal(h.forward_batch(select_view(x,g['name'])),draft.model.get_output_embeddings()(x['hidden']))
+   for _ in range(2):
+    g['opt'].zero_grad(set_to_none=True);loss=window_ce(h.forward_batch(select_view(x,g['name']),g['rng']),x['labels'],[1]*8).mean();loss.backward();assert torch.isfinite(loss)
+    assert all(p.grad is not None and torch.isfinite(p.grad).all() for p in h.parameters() if p.requires_grad);g['opt'].step()
+   smoke.append(dict(arm=g['name'],zero_residual_exact=True,finite_GPU_loss=float(loss.detach()),two_updates_discarded=True))
+   h.load_trainable_state_dict(initial);g['opt']=torch.optim.AdamW([p for p in h.parameters() if p.requires_grad],**cfg['optimizer']);g['rng'].manual_seed(42)
+  assert all(p.grad is None for p in draft.model.parameters())
+  write(out/'GPU_training_smoke.json',dict(status='pass',arms=smoke,batch=32,peak_allocated_mib=torch.cuda.max_memory_allocated()/2**20,peak_reserved_mib=torch.cuda.max_memory_reserved()/2**20,shared_Draft=True,Target_loaded=False,online_Target_smoke='mandatory after selected checkpoints, before development expansion'))
+  def checkpoint(g):
+   d=out/g['name'];d.mkdir(exist_ok=True);state={k:g[k] for k in ['epoch','position','updates','history','best','best_epoch','train_seconds']};state.update(model=g['head'].trainable_state_dict(),optimizer=g['opt'].state_dict(),rng=g['rng'].get_state(),registration_sha256=sha(ROOT/'ACK_registration.json'))
+   torch.save(state,d/'latest.tmp');os.replace(d/'latest.tmp',d/'latest.pt')
+  for g in groups:
+   p=out/g['name']/'latest.pt'
+   if p.exists():
+    s=torch.load(p,map_location='cpu',weights_only=False);assert s['registration_sha256']==sha(ROOT/'ACK_registration.json');g['head'].load_trainable_state_dict(s['model']);g['opt'].load_state_dict(s['optimizer']);g['rng'].set_state(s['rng'])
+    for k in ['epoch','position','updates','history','best','best_epoch','train_seconds']:g[k]=s[k]
+  # One shared batch; each arm has independent optimizer and random stream.
+  start=time.perf_counter();train=datasets['train'];cal=datasets['calibration'];order={}
+  for epoch in range(1,6):
+   order[epoch]=torch.randperm(len(train),generator=torch.Generator().manual_seed(42+epoch)).tolist()
+   for lo in range(0,len(train),32):
+    pending=[g for g in groups if g['epoch']==epoch and g['position']==lo]
+    if not pending:continue
+    ids=order[epoch][lo:lo+32];x=batch(train,ids)
+    for g in pending:
+     t0=time.perf_counter();g['head'].train();g['opt'].zero_grad(set_to_none=True)
+     loss=window_ce(g['head'].forward_batch(select_view(x,g['name']),g['rng']),x['labels'],[1]*8).mean();loss.backward()
+     torch.nn.utils.clip_grad_norm_([p for p in g['head'].parameters() if p.requires_grad],float('inf'),error_if_nonfinite=True);g['opt'].step();assert torch.isfinite(loss)
+     g['updates']+=1;g['position']+=len(ids);g['train_seconds']+=time.perf_counter()-t0
+     if g['updates']%1000==0:checkpoint(g)
+    if lo//32%100==0:write(out/'status.json',dict(phase='training',pid=os.getpid(),epoch=epoch,position=lo,groups=[dict(arm=g['name'],updates=g['updates']) for g in groups],unix=time.time()))
+   pending=[g for g in groups if g['epoch']==epoch]
+   for g in pending:
+    assert g['position']==len(train);g['head'].eval();sums=np.zeros(len(cal.records));counts=np.zeros(len(cal.records));t0=time.perf_counter()
+    with torch.inference_mode():
+     for lo in range(0,len(cal),32):
+      ids=list(range(lo,min(lo+32,len(cal))));cpu=cal.batch(ids);x=attach_embeddings(cpu,draft.model.get_input_embeddings(),'cuda:0')
+      loss=window_ce(g['head'].forward_batch(select_view(x,g['name'])),x['labels'],[1]*8).cpu().numpy();np.add.at(sums,cpu['request'].numpy(),loss);np.add.at(counts,cpu['request'].numpy(),1)
+    assert (counts>0).all();score=float((sums/counts).mean());row=dict(epoch=epoch,updates=g['updates'],calibration_request_equal_CE=score,seconds=time.perf_counter()-t0);g['history'].append(row)
+    d=out/g['name'];d.mkdir(exist_ok=True);p=d/f'epoch{epoch}.pt';torch.save(dict(model=g['head'].trainable_state_dict(),epoch=epoch,updates=g['updates'],registration_sha256=sha(ROOT/'ACK_registration.json')),p)
+    if score<g['best']:g['best']=score;g['best_epoch']=epoch;write(d/'selected.json',dict(path=str(p),sha256=sha(p),epoch=epoch,calibration=score,heldout_used=False))
+    write(d/'history.json',g['history']);g['epoch']+=1;g['position']=0;checkpoint(g);event('ACK_epoch_complete',arm=g['name'],**row)
+  selected=[]
+  for g in groups:
+   assert g['updates']==24485;s=read(out/g['name']/'selected.json');selected.append(dict(name=g['name'],kind='ack',checkpoint=s['path'],sha256=s['sha256'],selected_epoch=s['epoch']))
+  write(out/'selected_arms.json',selected);write(out/'completion.json',dict(status='complete',arms=selected,updates_each=24485,elapsed_seconds=time.perf_counter()-start,registration_sha256=sha(ROOT/'ACK_registration.json'),independent300_used=False))
+ finally:
+  lease.update(status='released',released_unix=time.time(),outcome='complete' if (out/'completion.json').exists() else 'failed');write(out/'gpu_lease.json',lease);fcntl.flock(lock,fcntl.LOCK_UN);lock.close()
+if __name__=='__main__':
+ try:main()
+ except Exception as e:write(ROOT/f'failure-train-ACK-{os.getpid()}.json',dict(error=repr(e),traceback=traceback.format_exc(),unix=time.time()));raise

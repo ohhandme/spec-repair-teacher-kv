@@ -1,0 +1,151 @@
+{
+  "status": "pass",
+  "source_scope": "native receipts and original-SHA-bound round projections",
+  "archive_sha256": "cf7b72740deef7b6cd1819f667a5134a6e236c6c6c963bec811d92afe684c1f1",
+  "files_checked": 2556,
+  "completion_sha256": "5ba66ed1a42fd321f7e30572d09eae383c3877825550c3f77c7f18efb0924b96",
+  "completion_unix": 1794697141.9455006,
+  "evaluation_wall_seconds": 30319.042071580887,
+  "request_arms": 1509,
+  "requests": 503,
+  "preview_scope": "development; selected epoch reused 503",
+  "independent300_used": false,
+  "trajectories_differing_from_ACK": {
+    "ACK_H": 495,
+    "ACK_KV": 499
+  },
+  "comparisons": [
+    {
+      "baseline": "RAW",
+      "candidate": "ACK",
+      "raw": {
+        "accepted": 42879,
+        "rounds": 20239,
+        "token_per_round": 2.118632343495232
+      },
+      "repair": {
+        "accepted": 43585,
+        "rounds": 19532,
+        "token_per_round": 2.231466311693631
+      },
+      "delta": 0.11283396819839897,
+      "ci95": [
+        0.090784504292996,
+        0.13617199874769836
+      ],
+      "requests": 503,
+      "families": 503,
+      "draws": 10000
+    },
+    {
+      "baseline": "RAW",
+      "candidate": "ACK_H",
+      "raw": {
+        "accepted": 42879,
+        "rounds": 20239,
+        "token_per_round": 2.118632343495232
+      },
+      "repair": {
+        "accepted": 43574,
+        "rounds": 19541,
+        "token_per_round": 2.229875646077478
+      },
+      "delta": 0.1112433025822459,
+      "ci95": [
+        0.08892161085817873,
+        0.13449623172276937
+      ],
+      "requests": 503,
+      "families": 503,
+      "draws": 10000
+    },
+    {
+      "baseline": "RAW",
+      "candidate": "ACK_KV",
+      "raw": {
+        "accepted": 42879,
+        "rounds": 20239,
+        "token_per_round": 2.118632343495232
+      },
+      "repair": {
+        "accepted": 43578,
+        "rounds": 19538,
+        "token_per_round": 2.230422765892108
+      },
+      "delta": 0.11179042239687575,
+      "ci95": [
+        0.08978930577894495,
+        0.13497529897141192
+      ],
+      "requests": 503,
+      "families": 503,
+      "draws": 10000
+    },
+    {
+      "baseline": "ACK",
+      "candidate": "ACK_H",
+      "raw": {
+        "accepted": 43585,
+        "rounds": 19532,
+        "token_per_round": 2.231466311693631
+      },
+      "repair": {
+        "accepted": 43574,
+        "rounds": 19541,
+        "token_per_round": 2.229875646077478
+      },
+      "delta": -0.0015906656161530641,
+      "ci95": [
+        -0.012324755278700472,
+        0.009163201707173663
+      ],
+      "requests": 503,
+      "families": 503,
+      "draws": 10000
+    },
+    {
+      "baseline": "ACK",
+      "candidate": "ACK_KV",
+      "raw": {
+        "accepted": 43585,
+        "rounds": 19532,
+        "token_per_round": 2.231466311693631
+      },
+      "repair": {
+        "accepted": 43578,
+        "rounds": 19538,
+        "token_per_round": 2.230422765892108
+      },
+      "delta": -0.0010435458015232157,
+      "ci95": [
+        -0.013052597948659095,
+        0.011285055237370667
+      ],
+      "requests": 503,
+      "families": 503,
+      "draws": 10000
+    },
+    {
+      "baseline": "ACK_H",
+      "candidate": "ACK_KV",
+      "raw": {
+        "accepted": 43574,
+        "rounds": 19541,
+        "token_per_round": 2.229875646077478
+      },
+      "repair": {
+        "accepted": 43578,
+        "rounds": 19538,
+        "token_per_round": 2.230422765892108
+      },
+      "delta": 0.0005471198146298484,
+      "ci95": [
+        -0.011671635572458428,
+        0.012710838925116263
+      ],
+      "requests": 503,
+      "families": 503,
+      "draws": 10000
+    }
+  ]
+}

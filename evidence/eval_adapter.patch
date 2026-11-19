@@ -1,0 +1,11 @@
+--- legacy/evaluate_dev.py
++++ runtime/evaluate_dev.py
+@@ -94,7 +94,7 @@
+      o=read(p);assert o['freeze_sha256']==sha(ROOT/'freeze.json') and o['prompt_sha256']==digest(req['prompt_ids']) and o['output_ids']==req['frozen_target_ids'];return o
+     started=time.perf_counter();source=req['oracle_source']
+     if source=='sealed_RAW_independent_greedy':output=read(req['raw_trace_path'])['oracle_ids']
+-    elif source=='sealed_six_request_independent_greedy':output=next(r for r in read(SHORT/'independent_oracles.json') if r['request_id']==req['request_id'])['output_ids']
++    elif source=='sealed_six_request_independent_greedy' and (SHORT/'independent_oracles.json').exists():output=next(r for r in read(SHORT/'independent_oracles.json') if r['request_id']==req['request_id'])['output_ids']
+     else:
+      event('independent_Target',request_id=req['request_id'],stage=stage)
+      with torch.inference_mode():output=list(autoregressive_generate(target,req['prompt_ids'],128,151645))

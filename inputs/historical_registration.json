@@ -1,0 +1,71 @@
+{
+  "arms": [
+    "ACK",
+    "ACK_H",
+    "ACK_KV"
+  ],
+  "architecture": "MLP1x256 common zero-residual rank32 repair",
+  "seed": 42,
+  "window": 8,
+  "max_new": 128,
+  "epochs": 5,
+  "batch_size": 32,
+  "updates_per_epoch": 4897,
+  "total_updates": 24485,
+  "optimizer": {
+    "lr": 0.0001,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.01
+  },
+  "loss": "CE valid-position normalized within window then mean windows",
+  "position_weights": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "epoch_selection": "minimum request-equal calibration CE; ties earliest",
+  "common_windows": {
+    "train": {
+      "path": "/data/autoresearch/classic-261114-task59-fdbf2f8a/kv-37f19abe/common_train.jsonl",
+      "sha256": "5c0ad85e68b18889bb30285b11fd2da4c1a31bbbfe8fd558ae76d8c6ab516f24",
+      "rows": 156688
+    },
+    "calibration": {
+      "path": "/data/autoresearch/classic-261114-task59-fdbf2f8a/kv-37f19abe/common_calibration.jsonl",
+      "sha256": "9f4622711e813272e7d3d964ea453d79689e83612945ce3ae7d4b937ee7f2da5",
+      "rows": 19736
+    }
+  },
+  "train_index_sha256": "6b8797ea5155e4fd9bd01474fd3c669e6902e2025b5723e03e2a5faf311c3ff6",
+  "shared_backbone": "fresh common initialization, not selecting a first4 winner",
+  "projection": {
+    "output_dim": 128,
+    "key_input": 1024,
+    "value_input": 1024,
+    "width": 32,
+    "parameters": 98304,
+    "H_layout": "H.reshape(B,4,1024): first two chunks to K layers, last two to V layers, repeated over four positions",
+    "ACK_layout": "local Draft state repeated into both streams/layers/positions; all same trainable projections active",
+    "KV_layout": "actual post-RoPE layers34/35 K,V, recent4 legal positions"
+  },
+  "teacher_payload_bytes": {
+    "ACK": 0,
+    "ACK_H": 8192,
+    "ACK_KV": 32768
+  },
+  "boundary_mask_bytes": 4,
+  "ACK_wire_bytes": 9,
+  "ACK_wire_schema": "accepted:uint8,rejected:int32(-1 if none),answer:int32; provenance metadata additional",
+  "offline_source": "only legal RAW previous boundary; future IDs and valid-label mask excluded from model inputs",
+  "online_source": "own trajectory same actual Target forward; no old RAW KV input",
+  "GPU_queue": "after six-arm503 normal completion and lease release"
+}
