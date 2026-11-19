@@ -1,0 +1,23 @@
+[
+  {
+    "name": "ACK",
+    "kind": "ack",
+    "checkpoint": "/data/autoresearch/classic-261114-task59-fdbf2f8a/wave2-dev503-20261114/ack_training/ACK/epoch1.pt",
+    "sha256": "3a7b24667434bb09ae6381367ae1f89338f0b554fc1f2a66e1b3ad41bb82ce40",
+    "selected_epoch": 1
+  },
+  {
+    "name": "ACK_H",
+    "kind": "ack",
+    "checkpoint": "/data/autoresearch/classic-261114-task59-fdbf2f8a/wave2-dev503-20261114/ack_training/ACK_H/epoch1.pt",
+    "sha256": "1afdbd4bce616009c4ba4b36bde4d38b97be8ffe2c02e24efd6e119f71ef6830",
+    "selected_epoch": 1
+  },
+  {
+    "name": "ACK_KV",
+    "kind": "ack",
+    "checkpoint": "/data/autoresearch/classic-261114-task59-fdbf2f8a/wave2-dev503-20261114/ack_training/ACK_KV/epoch1.pt",
+    "sha256": "bc4243d9d2f380fccbc4d73764be2a429e78a9b65127658a225461f53217bdf6",
+    "selected_epoch": 1
+  }
+]

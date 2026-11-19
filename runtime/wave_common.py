@@ -30,3 +30,36 @@ def event(kind,**kwargs):
  with (ROOT/'events.jsonl').open('a',encoding='utf-8') as stream:
   stream.write(json.dumps(value)+'\n');stream.flush();os.fsync(stream.fileno())
  print(json.dumps(value),flush=True)
+
+
+def validate_cursor(state, arm, freeze_hash, registration_hash, rows, batch_size, epochs):
+    if (state.get('arm'), state.get('freeze_sha256'), state.get('registration_sha256')) != (arm, freeze_hash, registration_hash):
+        raise ValueError('checkpoint arm, freeze or registration differs')
+    epoch, position, updates = (state[k] for k in ('epoch', 'position', 'updates'))
+    if any(type(v) is not int for v in (epoch, position, updates)):
+        raise ValueError('invalid training cursor type')
+    if not (1 <= epoch <= epochs + 1 and 0 <= position <= rows):
+        raise ValueError('invalid training cursor')
+    if (epoch == epochs + 1 and position != 0) or (position != rows and position % batch_size):
+        raise ValueError('invalid batch boundary')
+    expected = (epoch - 1) * ((rows + batch_size - 1) // batch_size) + (position + batch_size - 1) // batch_size
+    if updates != expected or len(state['history']) != epoch - 1:
+        raise ValueError('updates or epoch history differs from training cursor')
+
+
+def publish_manifest(out, roster, arms, records):
+    # All registered jobs have passed audit, including receipts sealed before a crash.
+    path = out / 'manifest.jsonl'
+    pending = out / 'manifest.pending'
+    with pending.open('w', encoding='utf-8', newline='\n') as stream:
+        for req in roster:
+            for arm in arms:
+                rid, name = req['request_id'], arm['name']
+                folder = out / 'requests' / rid / name
+                receipt = records[(rid, name)]
+                entry = dict(request_id=rid, arm=name, path=str(folder),
+                             receipt_sha256=sha(folder / 'receipt.json'), unix=receipt['unix'])
+                stream.write(json.dumps(entry) + '\n')
+        stream.flush()
+        os.fsync(stream.fileno())
+    os.replace(pending, path)

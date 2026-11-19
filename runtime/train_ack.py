@@ -7,6 +7,7 @@ def main():
  out=ROOT/'ack_training';out.mkdir(exist_ok=True)
  if (out/'completion.json').exists():return
  cfg=read(ROOT/'ACK_registration.json')
+ pathlib.Path(LOCK).parent.mkdir(parents=True,exist_ok=True)
  lock=open(LOCK,'a+');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
  assert not command(['nvidia-smi','--query-compute-apps=pid,used_memory','--format=csv,noheader'])
  lease=dict(status='held',pid=os.getpid(),unix=time.time(),lock=LOCK,no_added_runtime_cap=True);write(out/'gpu_lease.json',lease)
@@ -39,12 +40,15 @@ def main():
   assert all(p.grad is None for p in draft.model.parameters())
   write(out/'GPU_training_smoke.json',dict(status='pass',arms=smoke,batch=32,peak_allocated_mib=torch.cuda.max_memory_allocated()/2**20,peak_reserved_mib=torch.cuda.max_memory_reserved()/2**20,shared_Draft=True,Target_loaded=False,online_Target_smoke='mandatory after selected checkpoints, before development expansion'))
   def checkpoint(g):
-   d=out/g['name'];d.mkdir(exist_ok=True);state={k:g[k] for k in ['epoch','position','updates','history','best','best_epoch','train_seconds']};state.update(model=g['head'].trainable_state_dict(),optimizer=g['opt'].state_dict(),rng=g['rng'].get_state(),registration_sha256=sha(ROOT/'ACK_registration.json'))
+   d=out/g['name'];d.mkdir(exist_ok=True);state={k:g[k] for k in ['epoch','position','updates','history','best','best_epoch','train_seconds']};state.update(arm=g['name'],freeze_sha256=sha(ROOT/'freeze.json'),model=g['head'].trainable_state_dict(),optimizer=g['opt'].state_dict(),rng=g['rng'].get_state(),registration_sha256=sha(ROOT/'ACK_registration.json'))
    torch.save(state,d/'latest.tmp');os.replace(d/'latest.tmp',d/'latest.pt')
   for g in groups:
    p=out/g['name']/'latest.pt'
    if p.exists():
-    s=torch.load(p,map_location='cpu',weights_only=False);assert s['registration_sha256']==sha(ROOT/'ACK_registration.json');g['head'].load_trainable_state_dict(s['model']);g['opt'].load_state_dict(s['optimizer']);g['rng'].set_state(s['rng'])
+    s=torch.load(p,map_location='cpu',weights_only=False)
+    validate_cursor(s,g['name'],sha(ROOT/'freeze.json'),sha(ROOT/'ACK_registration.json'),
+                    len(datasets['train']),cfg['batch_size'],cfg['epochs'])
+    g['head'].load_trainable_state_dict(s['model']);g['opt'].load_state_dict(s['optimizer']);g['rng'].set_state(s['rng'])
     for k in ['epoch','position','updates','history','best','best_epoch','train_seconds']:g[k]=s[k]
   # One shared batch; each arm has independent optimizer and random stream.
   start=time.perf_counter();train=datasets['train'];cal=datasets['calibration'];order={}
@@ -69,13 +73,13 @@ def main():
       ids=list(range(lo,min(lo+32,len(cal))));cpu=cal.batch(ids);x=attach_embeddings(cpu,draft.model.get_input_embeddings(),'cuda:0')
       loss=window_ce(g['head'].forward_batch(select_view(x,g['name'])),x['labels'],[1]*8).cpu().numpy();np.add.at(sums,cpu['request'].numpy(),loss);np.add.at(counts,cpu['request'].numpy(),1)
     assert (counts>0).all();score=float((sums/counts).mean());row=dict(epoch=epoch,updates=g['updates'],calibration_request_equal_CE=score,seconds=time.perf_counter()-t0);g['history'].append(row)
-    d=out/g['name'];d.mkdir(exist_ok=True);p=d/f'epoch{epoch}.pt';torch.save(dict(model=g['head'].trainable_state_dict(),epoch=epoch,updates=g['updates'],registration_sha256=sha(ROOT/'ACK_registration.json')),p)
+    d=out/g['name'];d.mkdir(exist_ok=True);p=d/f'epoch{epoch}.pt';torch.save(dict(arm=g['name'],freeze_sha256=sha(ROOT/'freeze.json'),model=g['head'].trainable_state_dict(),epoch=epoch,updates=g['updates'],registration_sha256=sha(ROOT/'ACK_registration.json')),p)
     if score<g['best']:g['best']=score;g['best_epoch']=epoch;write(d/'selected.json',dict(path=str(p),sha256=sha(p),epoch=epoch,calibration=score,heldout_used=False))
     write(d/'history.json',g['history']);g['epoch']+=1;g['position']=0;checkpoint(g);event('ACK_epoch_complete',arm=g['name'],**row)
   selected=[]
   for g in groups:
-   assert g['updates']==24485;s=read(out/g['name']/'selected.json');selected.append(dict(name=g['name'],kind='ack',checkpoint=s['path'],sha256=s['sha256'],selected_epoch=s['epoch']))
-  write(out/'selected_arms.json',selected);write(out/'completion.json',dict(status='complete',arms=selected,updates_each=24485,elapsed_seconds=time.perf_counter()-start,registration_sha256=sha(ROOT/'ACK_registration.json'),independent300_used=False))
+   assert g['updates']==24485;s=read(out/g['name']/'selected.json');assert sha(s['path'])==s['sha256'];selected.append(dict(name=g['name'],kind='ack',checkpoint=s['path'],sha256=s['sha256'],selected_epoch=s['epoch']))
+  write(out/'selected_arms.json',selected);write(out/'completion.json',dict(status='complete',arms=selected,freeze_sha256=sha(ROOT/'freeze.json'),updates_each=24485,elapsed_seconds=time.perf_counter()-start,registration_sha256=sha(ROOT/'ACK_registration.json'),independent300_used=False))
  finally:
   lease.update(status='released',released_unix=time.time(),outcome='complete' if (out/'completion.json').exists() else 'failed');write(out/'gpu_lease.json',lease);fcntl.flock(lock,fcntl.LOCK_UN);lock.close()
 if __name__=='__main__':

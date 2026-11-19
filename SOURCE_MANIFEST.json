@@ -3,12 +3,12 @@
   "runtime/ack_head.py": "14af7c6205ff49a26155ad43de072b4550312e9ac7a4c9c40d1c7c419a9f155f",
   "runtime/cache_adapter.py": "c8aee03ae44b672bb506038763cc5c0908c8f59d918726901009bf275387a241",
   "runtime/closed_loop_core.py": "a9a9e91e44b9dc36fa49a23004503098e1dd48f4db4b51a69d0f966eb67eb33e",
-  "runtime/evaluate_dev.py": "72b2a97559361e68e8d5c1e65378fc6e41425c9f30bb0ad90a3e0556542daaef",
+  "runtime/evaluate_dev.py": "ac331432afa5755712e214078e3a9e8f05511b92b1f8c9044a8ad45bf2e9331c",
   "runtime/same_forward_kv.py": "13c95fc2cfd10c1c3338e9fd58b8e9eb34f2cbfb0220bd496c47cc38f0466a2b",
   "runtime/sweep_heads_task59_analyst.py": "1a34c7c85e2e54bab79d9bfcf7e8183fa1713e5bd1eb2fb61068d9e1fb6a3e2d",
   "runtime/teacher_kv_task59_analyst.py": "37f19abef538dfd79397b6d0de111c03ec04cd79573866907e4b1c12c0755efa",
-  "runtime/train_ack.py": "062dfc485c30cbbc330d58ef18a1258fd7bf22782f10cb311b1e5baea269d235",
-  "runtime/wave_common.py": "175875cbeebb149aae1ff2641ea811955ead9ecb8757f9653328ecac776bfa5a",
+  "runtime/train_ack.py": "4b360e7c726053eb97fcb5a3ef2981e69c31e240a93e8966ad964db57558ae63",
+  "runtime/wave_common.py": "061fcc1fa9def3fa37afb635e35e369dab6477190d1297792d8d1e51b502eeaa",
   "legacy/ack_data.py": "8858cea9ecc1f25d3eb61263f845a240a1b7f1c0c39abb9f8b5f7adc994d351b",
   "legacy/ack_head.py": "14af7c6205ff49a26155ad43de072b4550312e9ac7a4c9c40d1c7c419a9f155f",
   "legacy/evaluate_dev.py": "85bd56c54cefdb7de700a203757c51d000d9d1c25b6270fd33cd0f41ffa7d8a7",
@@ -51,8 +51,9 @@
   "inputs/historical_freeze.json": "da8dfba8f96252621669c8883470ee3d4b108204dec5b1937e9d8be986f4df95",
   "inputs/historical_registration.json": "31184bac91d4c074080c5501a1197c8696b54b8b3651e0c34c4421832c361411",
   "inputs/models_manifest.json": "3aa01f3c1f4b9bf488fbe696a374775e4ebf371be1a1836f5a1bda02256c3ee4",
-  "experiment.py": "4d75b2b99a7bca12b5bdf491e434e6b9f3e19d70c3c956a8c39ba64f9df2c79c",
+  "experiment.py": "e7bf7f3dd68557419f54ba28ebef5bbeb313b4a2c21454ba3181fbc47d584539",
   "cpu_smoke.py": "81769077c751f724d079bcbeab9b83d33fe539f74d348b40a1794697a2171e32",
   "requirements.txt": "40f9ee7207f785e18d4ca4209cacd07480cfbcc0abeeb2b12649573c0ae57b93",
-  "assets.template.json": "11238c1a128415f31c076d5edfcce51ae78ff1c5aa1c4469ca35d9a23fb6bc7c"
+  "assets.template.json": "11238c1a128415f31c076d5edfcce51ae78ff1c5aa1c4469ca35d9a23fb6bc7c",
+  "inputs/historical_selected_arms.json": "7fdd94f4ded8fee498a5c1d97f3bc28f7f216b4f9461508283b1f72dd0c2486a"
 }
